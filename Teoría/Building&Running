@@ -1,0 +1,34 @@
+Docker container creation process:
+1. Create dockerfile
+2. Use dockerfile to create a container image
+3. Use container image to create a running container. 
+
+Dockerfile example
+This sample Dockerfile has the commands FROM and CMD
+FROM alpine
+CMD ["echo", Hello World]
+FROM defines the base image and CMD prints the words "Hello World"
+
+Create a container image using the build command:
+docker build -t my-app:v1 .
+       (command)(tag)(repo)(version)(current directory)
+
+Docker run command
+Create the container using the run command:
+docker run my-app:v1
+
+To verify details of the container created run:
+docker ps -a
+
+Commands:
+
+docker images: lists all images, repositories, tags and sizes
+docker run -p 8080:80 nginx: creates a container from an image. 
+docker push my-app:v1 - Stores images ina configured registry
+docker pull nginx: Retrieves images froma a configured registry. 
+
+
+
+
+
+
