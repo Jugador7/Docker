@@ -1,0 +1,24 @@
+Founded 2013
+Docker is an open platform, or engine, where programmers can: Develop, Ship, Run apps as Containers. 
+
+Docker process:
+- Apps: go into container
+- Infra: Container runtime, operating system and hardware.  
+
+Written in Go. 
+
+Uses Linux kernel's features to deliver functionality
+Uses the namespaces technology to provide an isolated workspace: Container
+Creates a set of namespaces for every container and each aspect runs in a separate namespace with access limited to that namespace. 
+
+Additional docker technologies: Docker Cli, compose and prometheus. 
+Supports Agile and DevOps. 
+
+Easy versioning, collaboration, modularity and scaling.
+
+NOT GOOD FOR:
+
+Apps that require high performance or security
+Based monolith architecture
+Using rich GUI features
+Performing standard desktop or limited functions. 
