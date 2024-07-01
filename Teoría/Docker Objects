@@ -1,0 +1,29 @@
+Objects:
+1. Dockerfile: Text file that contains instructions needed to create an image
+Created using any editor from the console or terminal 
+Instructions:
+- FROM: Defines base image
+- RUN:Executes arbitrary commands
+- CMD: Defines default command for container execution
+
+2. Dockerimage
+Read-only template with instructions for creating Docker container.
+Built using instructions in a Dockerfile; a new read-only image layer is created for each instruction.
+A writeable (read-write) layer is added when an image is run as a container
+Layers can be shared between images, wich saves disk space and network bandwith
+Container image naming:
+hostname(identifies image registry)/repository(group of container images):tag(especific version or variant)
+e.g. docker.io/ubuntu:18.04
+
+3. Containers
+Runnable instance of an image
+Can be created, stopped, started or deleted using the Docker API or CLI
+Can connect to multiple networks, attach storage or create a new image based on its current state. 
+Isolated from other containers and its host machine. 
+
+4. Networks, Storage y Plugins
+Networks are used for the isolated container communication
+Storage: Docker uses volumens and bind mounts to persist data even after a container stops. 
+Plugins and Addons: Storage plugins provide the ability to connect to external storage platforms. 
+
+
