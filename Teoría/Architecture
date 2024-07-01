@@ -1,0 +1,80 @@
+Architecture:
+- Client-server
+- Provides complete app environment
+- Includes the client, host and registry components. 
+
+Process Overview:
+- Using either the Docker CLI (command line interface) or REST APIs, 
+the Docker client sends instructions or commands to the Docker host server
+- The docker host server, referred to as the host, includes the Docker daemon known as dockerd
+- The daemon listens for Docjer API requests or commands such as docker run and processes those commands. 
+- The daemon builds, runs, and distributes containers to the registry.
+
+Docker host:
+- Images, containers, namespaces, networks, storage, plugins and addons
+- Client, Host(Daemon), Registry(images, web server)
+
+Docker communications:
+- Can communicate with both local and remote hosts
+- The docker client and the host daemon can run 
+    On the same system or on different systems. 
+- Docker daemons can communicate with other daemons to manage Docker services. 
+
+Registry:
+- Stores and distributes images
+- Access is public (DockerHub) or private (for security)
+- Locations are either hosted or self-hosted (IBM Cloud por ejemplo)
+- Registry access: 
+  Developers build and push images using automation or a build pipeline.
+  Docker stores images in a registry
+  Local machines, cloud systems or on-premise systems pull the images.
+
+Contenerization:
+1. docker build from client to create container image 
+2. docker push to push image to registry (host verifies if image exists in the copies)
+3. If image is new, daemon creates running container using the image. 
+
+HandsOn:
+docker --version
+
+ibmcloud version
+
+cd /home/project
+
+[ ! -d 'CC201' ] && git clone https://github.com/ibm-developer-skills-network/CC201.git
+
+cd CC201/labs/1_ContainersAndDocker/
+
+ls
+
+docker images
+
+#pull first image from docker hub:
+docker pull hello-world
+
+docker images
+
+docker run hello-world
+
+#List the containers to see that your container ran and exited successfully.
+docker ps -a
+
+Among other things, for this container you should see a container ID, 
+the image name (hello-world), and a status that indicates that the container exited successfully.
+
+#Note the CONTAINER ID from the previous output and replace the <container_id> tag in the command below with this value. This command removes your container.
+docker container rm <container_id>
+
+docker ps -a
+
+Run this command to build image:
+docker build . -t myimage:v1
+
+#Now that your image is built, run it as a container with the following command:
+docker run -dp 8080:8080 myimage:v1
+
+curl localhost:8080
+
+docker stop $(docker ps -q)
+
+docker ps
