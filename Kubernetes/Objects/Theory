@@ -1,0 +1,53 @@
+Object:  A bundle of software that has an identity, a state and a behavior(variables,
+data structures and specific functions)
+
+Entity: a person, place or thing with an identity and associated data. 
+
+Persisten: Lasts despite downtime
+
+Kubernetes objects are persistent entities.
+(Pods, Namespaces, ReplicaSets and Deplyments)
+
+Objects consist of two main fields
+Object spect: Provided by user and defines desired state
+Status: Provided by kubernetes and defines current state
+
+To work with objects you can use the KubernetesAPI directly with the client libraries,
+the kubectl command-line interface or both
+
+Labels and selectors:
+- Labeles are key-value pairs to identify an object. 
+- Selectors are the core grouping method of kubernetes and help you identify and group a set of objects.
+
+Namespaces and names:
+- Namespaces: mechanism for isolating groups of resources within a single cluster 
+for example team, project, etc. 
+- Necessary with larger numbers of users.
+
+Namespaces provide a scope for object names:
+- Each object has a name
+- Names are unique for a resource type within a namespace
+
+Pods:
+Simplest unit in kubernetes
+Represents processes running in your cluster
+Encapsulates one or more containers
+Replicating a pod servers to scale applications horizontally
+Pods have apiVersion, kind, metadata, specs(containers: name, image and ports)
+
+ReplicaSet:
+- Set of horizontally scaled running Pods. 
+- Configuration file that defines: Number of replicas, pod template, selector(matches the pod template label)
+- Created and managed by deployments
+
+Deployment:
+- Provides updates for Pods and ReplicaSets
+- Run multiple replicas of an application
+- Suitable for stateless applications. 
+- Has a selector defines which pods can be acquired
+- Update triggers a rollout
+
+
+
+
+
