@@ -112,7 +112,13 @@ Job:
 -A job can run several pods in parallel
 - a CronJob: Jobs on iterative schedule. 
 
+Ingress objects
+The Ingress acts as a supervisor for external access, exposing routes from outside the cluster to internal services, mainly focusing on HTTP and HTTPS traffic. It adheres to rules defined on the Ingress resource to regulate traffic routing.
 
+It doesn't manage arbitrary ports or protocols. Instead, it can provide services with externally accessible URLs, balance traffic, handle SSL/TLS termination, and enable name-based virtual hosting. For non-HTTP and non-HTTPS services, specific service types such as Service.Type=NodePort or Service.Type=LoadBalancer are typically used.
+
+Ingress controllers
+On the operational side, the Ingress controller is the deployed cluster resource responsible for implementing rules specified by the Ingress API object. Unlike certain controllers that automatically run as part of the kube-controller-manager binary, the Ingress controller requires explicit activation for the Ingress resource to function. Its primary role is to execute the directives outlined in the Ingress, commonly utilizing a load balancer or setting up additional frontends to handle incoming traffic.
 
 
 
