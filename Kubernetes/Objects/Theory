@@ -47,6 +47,71 @@ Deployment:
 - Has a selector defines which pods can be acquired
 - Update triggers a rollout
 
+Service:
+- REST object, like Pods
+- Is a logical abstraction for a set of Pods in a cluster
+- Provides policies for accessing the Pods and cluster
+- Every service has an IP and multiple protocls such as TCP,. UDP and other
+- The port number with the sanme name can vary in each backend Pod
+- Can have an opttional selector
+- Optionally maps incoming ports to a targetPort
+- Services are needed because Pods in a cluster are volatile
+- This volatilty leads to discoverability issyes because of changing IP addresses. 
+- A Service keeps track of the changes and exposes a single IP address or a DNS name
+A servie utilizes selectors to target a set of pods
+
+Native Kubernetes applications
+- Update API endpoints when there are changes in the Pods of a Service
+
+Non-native Kubernetes applications
+-use a virtual-IP-based bridge or load balancer between the applications and the backend Pods. 
+
+4 Types of services:
+ClusterIP: 
+- Makes the service only accesible within the cluster. 
+
+NodePort:
+- Creates and routes requests to the Cluster IP service
+- Exposes the service on each node0s IP address at a static port. 
+- Extensiuon of cluster IP
+- Exposes a service with no load balancing
+
+LoadBalancer:
+- Extension of the nodePort Service, an external Load Balancer or ELB, creates nodePort and ClusterIP services automatically. 
+- Directs service to nodePortService. 
+- To expose a service to the internet you need a new ELB with an IP address
+- Use a cloud provider's ELB to host your cluster. 
+
+ExternalName:
+- Maps toi a DNS name. 
+Requires a paramerter spect. externalName
+- Returns a CNMAE record and its value
+- Used to create a service that represents an external storage and enable pods from different namespace to talk to each other. 
+
+Ingress_
+- API OBjewct that provides routing roles to multiples users. 
+- Por 80 para HTTP y 443 pra HTTPS
+- An ELB is expensive and is managed outside the cluster while the cluster monitors ingress. 
+
+DaemonSet
+- bject that makes sure that nodes run a copy of a pod
+- As nodews are added to a cluster, pods are added to the nodes. 
+- Pods are garbage collected when removed froma a cluster. - Ideally used for storage, logs. 
+
+StatefulSet:
+Object that manages statefull apps. 
+Manages deployment and scaling of pods. 
+provides guarantiees about the order and uniqueness of pods
+Maintains a sticky identity and provides persistence storage volumens
+
+Job:
+-Creates pods and tracjs its completion. 
+-Jobs are retried until completed
+-Deleting a job will remove the created pods. 
+-Suspending a job will delete active pods. 
+-A job can run several pods in parallel
+- a CronJob: Jobs on iterative schedule. 
+
 
 
 
