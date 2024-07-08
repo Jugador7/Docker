@@ -1,0 +1,34 @@
+Kubernetes' CLI. 
+
+Provides many featires for users who work with clusters. 
+
+Ky commands structure:
+
+kubectl [command][type][name][flags]
+
+Impeartive commnands (CUD) specified as args or flags, easies to learn
+- kubectl run n ginx --  image nginx
+
+Ideal for dev and test environements. 
+
+Configuration:
+Configuration fiule specified must contain a full definition of the objects in a YAML or JSON format. 
+Specifies required operations, optional flags and at least on file name. 
+
+kubctl create -f nginx.yaml
+
+The file maybe stored in git. 
+Using it requires an understanfing of the schema 
+
+Limitations:
+- Every new configuration must be updated in the new configuration file. 
+- Second developer must use previous configuration. 
+
+DECLRATIV OBJECT CONFIG:
+- Stores config data in files. 
+- Operations are identified by Kubectl
+
+kubectl apply -f nginx/
+- Config files defined ideal state. 
+- Ideal for PROD. 
+
