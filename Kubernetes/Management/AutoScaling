@@ -1,0 +1,21 @@
+Enables scaling as needed.
+
+Two levels: Cluster/node level and pod level
+
+kubectl autoscale deploy hello-kubernetes --min=2 --max=5 --cpu-percent=50
+
+Autoscaling types:
+
+Horizontal Pod Autoscaler (HPA): Adjusts the number of replicas of an application by increasing or decreasing the number of pods. 
+- Updates a deployment
+- Uses a cluster operatior like CPU or memory
+- You can use a YAML file for this HPA
+
+Vertical pOd Autoscaler (VPA): Adjusts requests and resources of the pods
+- Adds more resources to an existing machine. 
+- CPU and memory 
+- Use together with HPA eith external metrics. 
+
+Cluster Autoscaler (CA): Adjusts number of nodes in the cluster when pods fail to schedule or when demand increases or decreases in relation to the capacity of existing nodes. 
+- When nodes are overflown with pods. 
+
