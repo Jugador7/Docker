@@ -1,0 +1,25 @@
+If an app is deployed on a single pod, the pod will be unable to perform certain actions if requests increas manifold or outages. 
+
+ReplicaSet:
+
+Ensures the right number of pods are always up and running. 
+
+Adds or deletes pods for scaling and redundancies. 
+Supersedes replicaControllers
+
+Best managed by a deployment. Is created by the very deployment. 
+
+I t does not own pods, uses pod labels. 
+
+To create a replicaSet from scratch Apply a YAML
+1. kubectl create -f replicaset.yaml
+2. kubectl get pods
+3. kubectl get rs
+
+Create deployment:
+1. kubectl create -f deployment.yaml
+2. kubectl get pods
+3. kubectl get deploy
+
+Scale deployment:
+1. kubectl scale deploy hello-kubernetes -- replicas = 3
