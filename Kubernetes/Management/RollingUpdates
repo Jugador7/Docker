@@ -1,0 +1,15 @@
+
+Automated updates that occur on a scheduled basis. 
+
+Roll out automated and controled app changes across pods
+
+Work with pod templates like deployments
+
+Allow for rollback as needed. 
+
+First steps:
+
+1. Add livnes probves and redines probes
+
+2. Add rolling update strategy to your YAML file. 
+
