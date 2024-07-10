@@ -1,0 +1,16 @@
+Helps devs avoid hard-coding configuration variables into the application code
+Is an API object used to store non-confidential data in key-value pairs
+Does not provide secrecy or encryption
+Limited to 1MB FOR MORE CONSIDER A Volume
+Easily portable as a configmap
+Multiple ways to create
+-Strin laterals
+- Using exiting properties or key valuies
+-Providin a configmap uaml descriptor fil
+
+Configure environment values. 
+
+Provide a key value pare in kubectl create configmAP my-config --from-lireral=MESSAGE
+
+ConfigMap properties file. 
+
