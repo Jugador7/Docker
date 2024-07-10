@@ -14,3 +14,5 @@ Provide a key value pare in kubectl create configmAP my-config --from-lireral=ME
 
 ConfigMap properties file. 
 
+Secret: Use with string literals. 
+Use with volume mount. 
