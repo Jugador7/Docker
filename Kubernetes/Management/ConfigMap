@@ -16,3 +16,9 @@ ConfigMap properties file.
 
 Secret: Use with string literals. 
 Use with volume mount. 
+Use envoronment variables.
+
+Recap:
+ConfigMap provides variables for the app
+You can create it using trhee ways. 
+Secret is used to provide sensitive information to your app. 
