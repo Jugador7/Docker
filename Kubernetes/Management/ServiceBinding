@@ -1,0 +1,12 @@
+Process to consume external services or backing services
+
+Manages configuration and credentials for back-end services while protecting sensitive data.
+
+Makes service credentials available automatically as a secretes. 
+
+Consumes the externeal by binding the application to a deployment. 
+
+The app code uses the credentials from the binding and calls teh corresponding service. 
+
+Service binding architecture. 
+
