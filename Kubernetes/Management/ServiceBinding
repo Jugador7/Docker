@@ -10,3 +10,9 @@ The app code uses the credentials from the binding and calls teh corresponding s
 
 Service binding architecture. 
 
+IBM CLOUD:
+
+1. Provision an isntance of a servuce using IBM CLoud catalog
+2. Bind service instance to your cluster
+3: Verify secret stored in the cluster
+4. Mount the secrete as a volume to your pod or reference the secret in environment variables. 
