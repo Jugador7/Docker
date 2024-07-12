@@ -1,0 +1,62 @@
+Operator intro:
+- Operators automate cluster tasks and act a custom controller to extend the kubernetes api. 
+- Run in a pod and interact with api server. 
+- Packages, depoloys and manages kubernetes apps. 
+- Human operator vsd software operators (captures knowledge of humans)
+
+Why use operators? 
+- Repeatable installs and upgrades
+- Regular full-system health checks
+- Over-the-air updates
+- Communication tools
+- Integration. 
+
+Service Brokers vs Operators
+- Service Brokers: short-running process that cannot perform the consecutive day's operations such as upgrades or scaling 
+- Customizations and parametrizations only at the time of installation 
+- off cluster services. 
+
+-Operatiors: A long-running process that can perform operations like upgrades, failover or scaling every day. 
+- Customizations and parametrization, as operators constantly watch the current state of your cluster. 
+- off cluster services. 
+
+CRD (custom resource definition)
+- Extends kubernetes API. 
+Can be installed in clusters. 
+- Accesibklae using jubectl. 
+
+Custom controllers
+
+Controllers reconcile a cluster's actual state with its configured state. 
+
+Custom controllers do the same reconciling for custom resources (CRDs)
+
+Combining CRDs and custom controllers creates a declarative API
+
+This combination is known as the operator pattern. 
+
+Operator framework:
+- Coding, testing, delivery and operator updates. 
+
+Operator SDK
+- KHelps build
+
+LOM controlls operator install and upgrade
+
+Operator Registry: Stores CRD, CSVs and operator data
+
+OperatorHub. 
+
+Operator Maturity Model: 
+Shows capabiliteies operated by helm, ansible and go. 
+
+Operations in practice: 
+
+To deploy a complete application: 
+1. Create a custome resource for the app. 
+2. Create a custome controller for this CRD
+3. Operator logic determines how to reconcile the actual and desired states. 
+4. A crd requires the creation of other objects 
+5. OperatorHub view: Enables installation with one click. Operators availabkle form red hat, certified, custom and community. 
+6. You can install many kubernetes tools wiht this. 
+
