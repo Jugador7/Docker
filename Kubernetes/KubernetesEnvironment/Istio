@@ -1,0 +1,44 @@
+Istio
+- A dedicated infrastructure layer that adds capabilities (to applications without adding to code) such as traffic management, security and
+observability. 
+- Helps to make service-to-service communication fast, secure, and reliable. 
+
+Connection to control traffic
+Secures services through authentication
+Enforces policies across the fleet
+Observes traffic flow
+Traces call flows and dependencies. 
+
+Features:
+Load balances traffic for different protocols. 
+TSL-encrypted communications between services in a cluster combined with authen and authorization. 
+Granular configuration of traffic flow (routing rules) and control
+Policies and API support, access controls, rate limits and quotas. 
+Automatic monitoring, logging and tracking traffic.
+
+Istio and kubernetes:
+- Extensible 
+- Handles diverse deployment needs. 
+- Enables the addition of applications of a cluster to the mesh. 
+- The extension of the mesh to additional clusters
+- Connections to virtual machines or other endpoints running outside of kubernetes. 
+
+How it works: 
+All network traffic is intercepted by a proxy called envoy used by the service mesh. 
+- Control plane:
+  Gives Discovery configuration certificates to services
+  Receives metrics
+- Data plane
+
+Microservices:
+- A single apps has many loosly coupled services. 
+- Well defined APIs for communication
+- Benefits include easy updates to code, allowing differente technology stacks for differente components and scaling components independently
+- Challenges:
+  - Traffic encryption, canary deplkoyments and A/B testing to cascading failures (retries, circuit breaking
+  - Retries and circuit breaking. 
+- Defends from man in the middle attacks.
+
+
+
+  
