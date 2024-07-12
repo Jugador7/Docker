@@ -1,0 +1,13 @@
+Kubernetes and Openshift are container orchestration platforms.
+
+Kubernetes us a crucial component of OpenShift
+
+Use OpenShift as an extension of Kubernetes to provide a more robust and comprehensive container platform. 
+
+Features of OpenShift:
+- Scalable, Flexible, Open source, Portable containers, Enhanced developer experience, Automated installas ¬upgrades. Automation and streamlining, edge arguitecutre support. 
+-Multi cluster management, advanced security and compliance. 
+- Persistent storega
+- Robust partener ecosystem. 
+
+Openshift runs on top a kubernetes cluster with object data stored in the etcd key-value store. It has microservices-based architecture. 
