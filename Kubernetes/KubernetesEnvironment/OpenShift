@@ -11,3 +11,14 @@ Features of OpenShift:
 - Robust partener ecosystem. 
 
 Openshift runs on top a kubernetes cluster with object data stored in the etcd key-value store. It has microservices-based architecture. 
+
+Openshift offers a set of CLI tools that let users perform various admin and development operations from the terminal. 
+
+OpenShift CLI (oc) is the most common CLI tool to perform end-to-end operations. It runs on Windoes, Linux and mac. 
+
+oc lets you:
+- Work directly with project source code
+- Script OpenShift operations
+- Manage projects during restricted bandwith or availability of the web console. 
+
+A copy of kubectl is included in oc. And supporst deplymentconfigs, buildconfigs, imagestreams and routes. 
