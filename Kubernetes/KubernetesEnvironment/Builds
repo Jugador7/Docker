@@ -1,0 +1,66 @@
+
+A build is the process of transforming inputs into a resultant object. For example, transforming source code to a container image. 
+
+A build requires a build config (strategy and sources)
+
+Strategies (Source to Image(S2I), Docker, Custom)
+
+A build input source (provides content for builds)
+
+ImageStream
+
+Abstraction for referencing container images. 
+Points to images stored in image registry. 
+
+May have many tags and each tags points to an image. 
+
+Build triggers
+- Automated builds. 
+- Webhook trigger
+  - Sends a request to an OpenShift Container Platform API endpoint. 
+  - Supports generic webhooks and the more often used github webhooks
+
+Image change trigger. 
+- Keeps images up to date
+
+BuildConfig:
+1. New build config
+2. runPolicy
+3. Triggers lust creates a new build
+4. Source section defines build input source and strategy
+5. Input source type is Git with uri. 
+6- Source strategy
+7. Container image is pushed to repository
+8. postCommit - optional build hook. 
+
+S2I strategy:
+- Is a tool for building reproducible container images
+- Injects application source into a container image to produce a ready-to-run image
+- Eliminates using a dockerfile
+Go from source to image in one step. 
+Openshif tincludes predifiend build images. 
+
+Docker build strategy
+Docker registry:
+- Requires a repository with dockerfile and necessary arifacts
+- Invokes the "docker build" command and creates an images. 
+
+Pushes image to the internal registry
+
+Docker build strategy methods:
+- Replace Dockerfile FROM image
+- Use Dockerfile Path
+- Use Docjer environment variables
+- add Docker build arguments
+
+Custom build
+- Create your own image 
+- Regular docker images to transform iinputs into outputs. 
+- Creates additional objects like JAR files and CI/CD deployment that performs unit or integration tests. 
+- Custom builds are only available to cluster admins. 
+
+Build automation: 
+- Cloud native development requires greater automation throughout the 
+- CI/CD
+- Merges new coude changes to a repo. 
+
