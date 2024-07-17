@@ -1,0 +1,142 @@
+Clone the git repository that contains the artifacts needed for this lab.
+1
+[ ! -d 'guestbook' ] && git clone https://github.com/ibm-developer-skills-network/guestbook
+Copied!
+
+
+Change to the directory for this lab.
+1
+cd guestbook
+Copied!
+List the contents of this directory to see the artifacts for this lab.
+1
+ls
+
+Build the guestbook app
+To begin, we will build and deploy the web front end for the guestbook app.
+
+Change to the v1/guestbook directory.
+1
+cd v1/guestbook
+Copied!
+Dockerfile incorporates a more advanced strategy called multi-stage builds, so feel free to read more about that here.
+Complete the Dockerfile with the necessary Docker commands to build and push your image. The path to this file is guestbook/v1/guestbook/Dockerfile.
+
+Hint!
+Copy the code of the completed dockerfile with you. You will be prompted to submit it in the text box in the Peer Assignment.
+
+Export your namespace as an environment variable so that it can be used in subsequent commands.
+1
+export MY_NAMESPACE=sn-labs-$USERNAME
+Copied!
+
+
+Build the guestbook app using the Docker Build command.
+Hint!
+Push the image to IBM Cloud Container Registry.
+Hint!
+Note: If you have tried this lab earlier, there might be a possibility that the previous session is still persistent. In such a case, you will see a ‘Layer already Exists’ message instead of the ‘Pushed’ message in the above output. We recommend you to proceed with the next steps of the lab.
+
+Verify that the image was pushed successfully.
+1
+ibmcloud cr images
+Copied!
+
+
+📷 Take a screenshot of the output of Step 6 and save it as a .jpg or .png with the filename crimages.png. You will be prompted to upload the screenshot in the Peer Assignment.
+
+Open the deployment.yml file in the v1/guestbook directory & view the code for the deployment of the application:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook
+  labels:
+    app: guestbook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guestbook
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: guestbook
+    spec:
+      containers:
+      - image: us.icr.io/<your sn labs namespace>/guestbook:v1
+        imagePullPolicy: Always
+        name: guestbook
+        ports:
+        - containerPort: 3000
+          name: http
+        resources:
+          limits:
+            cpu: 50m
+          requests:
+            cpu: 20m
+Copied!
+Note: Replace <your sn labs namespace> with your SN labs namespace. To check your SN labs namespace, please run the command ibmcloud cr namespaces
+
+It should look as below:
+
+
+Apply the deployment using:
+1
+kubectl apply -f deployment.yml
+Copied!
+
+
+Open a New Terminal and enter the below command to view your application:
+1
+kubectl port-forward deployment.apps/guestbook 3000:3000
+Copied!
+
+
+Launch your application on port 3000. Click on the Skills Network button on the right, it will open the “Skills Network Toolbox”. Then click the Other then Launch Application. From there you should be able to enter the port and launch.
+
+
+Now you should be able to see your running application. Please copy the app URL which will be given as below:
+
+
+📷 Take a screenshot of your deployed application and save it as a .jpg or .png with the filename app.png. You will be prompted to upload the screenshot in the Peer Assignment.
+
+Try out the guestbook by putting in a few entries. You should see them appear above the input box after you hit Submit.
+
