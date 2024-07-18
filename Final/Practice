@@ -12,6 +12,20 @@ List the contents of this directory to see the artifacts for this lab.
 1
 ls
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Build the guestbook app
 To begin, we will build and deploy the web front end for the guestbook app.
 
@@ -22,20 +36,63 @@ Copied!
 Dockerfile incorporates a more advanced strategy called multi-stage builds, so feel free to read more about that here.
 Complete the Dockerfile with the necessary Docker commands to build and push your image. The path to this file is guestbook/v1/guestbook/Dockerfile.
 
+# Please choose from the below set of Docker commands to complete your Dockerfile:
+
+# COPY
+# RUN
+# ADD
+# EXPOSE
+# FROM
+# CMD
+# PUSH
+# PULL
+# WORKDIR
+
+
+FROM golang:1.18 as builder
+
+WORKDIR /app
+
+COPY main.go .
+
+RUN go mod init guestbook
+RUN go mod tidy
+
+RUN go build -o main main.go
+
+FROM ubuntu:18.04
+
+COPY --from=builder /app/main /app/guestbook
+
+ADD public/index.html /app/public/index.html
+ADD public/script.js /app/public/script.js
+ADD public/style.css /app/public/style.css
+ADD public/jquery.min.js /app/public/jquery.min.js
+
+WORKDIR /app
+
+CMD ["./guestbook"]
+EXPOSE 3000
+
 Hint!
 Copy the code of the completed dockerfile with you. You will be prompted to submit it in the text box in the Peer Assignment.
 
 Export your namespace as an environment variable so that it can be used in subsequent commands.
 1
-export MY_NAMESPACE=sn-labs-$USERNAME
-Copied!
+export MY_NAMESPACE=sn-labs-moyagabriel1
+Copied
 
 
 Build the guestbook app using the Docker Build command.
 Hint!
+docker build . -t us.icr.io/$MY_NAMESPACE/guestbook:v1
+
+
 Push the image to IBM Cloud Container Registry.
+docker push us.icr.io/$MY_NAMESPACE/guestbook:v1
 Hint!
-Note: If you have tried this lab earlier, there might be a possibility that the previous session is still persistent. In such a case, you will see a ‘Layer already Exists’ message instead of the ‘Pushed’ message in the above output. We recommend you to proceed with the next steps of the lab.
+Note: If you have tried this lab earlier, there might be a possibility that the previous session is still persistent. In such a case, you will see a ‘Layer already Exists’ message instead of the ‘Pushed’ message in the above output. 
+We recommend you to proceed with the next steps of the lab.
 
 Verify that the image was pushed successfully.
 1
@@ -46,39 +103,7 @@ Copied!
 📷 Take a screenshot of the output of Step 6 and save it as a .jpg or .png with the filename crimages.png. You will be prompted to upload the screenshot in the Peer Assignment.
 
 Open the deployment.yml file in the v1/guestbook directory & view the code for the deployment of the application:
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -101,7 +126,7 @@ spec:
         app: guestbook
     spec:
       containers:
-      - image: us.icr.io/<your sn labs namespace>/guestbook:v1
+      - image: us.icr.io/sn-labs-moyagabriel1/guestbook:v1
         imagePullPolicy: Always
         name: guestbook
         ports:
@@ -139,4 +164,109 @@ Now you should be able to see your running application. Please copy the app URL 
 📷 Take a screenshot of your deployed application and save it as a .jpg or .png with the filename app.png. You will be prompted to upload the screenshot in the Peer Assignment.
 
 Try out the guestbook by putting in a few entries. You should see them appear above the input box after you hit Submit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Autoscale the Guestbook application using Horizontal Pod Autoscaler
+Autoscale the Guestbook deployment using kubectl autoscale deployment
+Hint!
+1
+kubectl autoscale deployment guestbook --cpu-percent=5 --min=1 --max=10
+Copied!
+
+
+You can check the current status of the newly-made HorizontalPodAutoscaler, by running:
+1
+kubectl get hpa guestbook
+Copied!
+The current replicas is 0 as there is no load on the server.
+
+📷 Take a screenshot of your Horizontal Pod Autoscaler and save it as a .jpg or .png with the filename hpa.png. You will be prompted to upload the screenshot in the Peer Assignment.
+
+Open another new terminal and enter the below command to generate load on the app to observe the autoscaling (Please ensure your port-forward command is running. In case you have stopped your application, please run the port-forward command to re-run the application at port 3000.)
+1
+kubectl run -i --tty load-generator --rm --image=busybox:1.36.0 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- <your app URL>; done"
+Copied!
+Please replace your app URL in the <your app URL> part of the above command.
+Note: Use the same copied URL which you obtained in step 11 of the previous task.
+
+The command will be as below:
+
+
+
+Note: In case you get a Load generator already exists error, please suffix a number after load-generator eg. load-generator-1, load-generator-2.
+
+You will keep getting an output similar as below which will indicate the increasing load on the app:
+
+
+Note: Continue further commands in the 1st terminal
+
+Run the below command to observe the replicas increase in accordance with the autoscaling:
+1
+kubectl get hpa guestbook --watch
+Copied!
+
+
+Run the above command again after 5-10 minutes and you will see an increase in the number of replicas which shows that your application has been autoscaled.
+
+
+📷 Take a screenshot of your Autoscaler details and save it as a .jpg or .png with the filename hpa2.png. You will be prompted to upload the screenshot in the Peer Assignment.
+
+Run the below command to observe the details of the horizontal pod autoscaler:
+1
+kubectl get hpa guestbook
+Copied!
+
+
+Please close the other terminals where load generator and port-forward commands are running.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
